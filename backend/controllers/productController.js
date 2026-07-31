@@ -66,6 +66,8 @@ const updateProduct = async (req, res) => {
 
 
 const deleteProduct = async (req, res) => {
+  console.log("Delete Request ID:", req.params.id);
+
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
 
@@ -82,13 +84,14 @@ const deleteProduct = async (req, res) => {
       data: deletedProduct,
     });
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       success: false,
       message: error.message,
     });
   }
 };
-
 
 
 const getProductById = async (req, res) => {
